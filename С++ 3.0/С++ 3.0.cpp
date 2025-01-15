@@ -1,38 +1,28 @@
 ﻿#include <iostream>
-#include <memory>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
-class People {
-    string name;
-    string surname;
-    string fathername;
-    int year;
+class Multi {
 public:
-    People() {
-        this->name = "Kolya";
-        this->surname = "Yakybovych";
-        this->fathername = "Kostantynovich";
-        this->year = 16;
+    Multi() {
     }
-    void Print() {
-        cout << "Name: " << name << endl << "Surname: " << surname << endl << "Fathername: " << fathername << endl << "Year: " << year << endl;
+    void operator()(string& elem) {
+        string lol = elem;
+        for (int i = 0; i < elem.length(); i++)
+        {
+            elem[i] = lol[elem.length() - 1 - i];
+        }
     }
 };
 
 int main()
 {
-    unique_ptr<People[]> ptr1(new People[5]);
-
-    for (int i = 0; i < 5; i++) {
-        ptr1[i].Print();
-    }
-
-    cout << "----------------------" << endl;
-
-    shared_ptr<People[]> ptr2(new People[5]);
-    shared_ptr<People[]> ptr3 = ptr2;
-    for (int i = 0; i < 5; i++) {
-        ptr3[i].Print();
+    vector<string> vec = {"brediki","nullTalisman","bracer","wraithBand"};
+    for_each(vec.begin(), vec.end(), Multi());
+    for (const auto& elem : vec)
+    {
+        cout << elem << endl;
     }
 }
