@@ -31,7 +31,7 @@ int main()
     cout << "----------------------" << endl;
 
     shared_ptr<People[]> ptr2(new People[5]);
-    shared_ptr<People[]> ptr3 = move(ptr2);
+    shared_ptr<People[]> ptr3 = ptr2;
     for (int i = 0; i < 5; i++) {
         ptr3[i].Print();
     }
