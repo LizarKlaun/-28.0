@@ -11,8 +11,8 @@ class People {
 public:
     People() {
         this->name = "Kolya";
-        this->surname = "Yukibovich";
-        this->fathername = "Kostyntinovich";
+        this->surname = "Yakybovych";
+        this->fathername = "Kostantynovich";
         this->year = 16;
     }
     void Print() {
@@ -27,9 +27,12 @@ int main()
     for (int i = 0; i < 5; i++) {
         ptr1[i].Print();
     }
+
     cout << "----------------------" << endl;
+
     shared_ptr<People[]> ptr2(new People[5]);
+    shared_ptr<People[]> ptr3 = move(ptr2);
     for (int i = 0; i < 5; i++) {
-        ptr2[i].Print();
+        ptr3[i].Print();
     }
 }
